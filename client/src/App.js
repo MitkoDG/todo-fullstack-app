@@ -2,7 +2,7 @@ import ListHeaders from './components/ListHeaders';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="app">
       <ListHeaders listName={'Priority List'} />
     </div>
   );
