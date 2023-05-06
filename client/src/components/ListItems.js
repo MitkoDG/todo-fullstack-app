@@ -1,13 +1,26 @@
+import ProgressBar from "./ProgressBar";
+import TickIcon from "./TickIcon";
+
 const ListItems = ({ task }) => {
 
     return (
-        <div className="list-item">
-            <div className="info-container">
+        <li className="list-item">
 
+            <div className="info-container">
+                <TickIcon />
                 <p className="task-title">{task.title}</p>
-                
+                <ProgressBar />
             </div>
-        </div>
+
+            <div className="list-header-buttons">
+                <button className="edit">Edit</button>
+                <button className="delete">Delete</button>
+            </div>
+
+
+        </li>
+
+
     )
 }
 export default ListItems;
