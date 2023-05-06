@@ -8,6 +8,7 @@ app.use(cors());
 
 app.get('/todos/:userEmail', async (req, res) => {
     const { userEmail } = req.params;
+    console.log(userEmail);
     try {
         const todos = await pool.query('SELECT * FROM todos WHERE user_email = $1', [userEmail]);
         res.json(todos.rows);
