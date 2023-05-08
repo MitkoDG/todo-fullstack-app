@@ -62,6 +62,21 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+.create {
+  border: 1.5px solid rgb(108, 115, 148);
+  color: rgb(108, 115, 148);
+  text-transform: uppercase;
+}
+
+.create:hover {
+  background-color: rgb(131, 138, 172);
+}
+
+.create:active {
+  color: rgb(108, 115, 148);
+  background-color: rgb(255, 255, 255);
+}
+
 .list-header {
     display: flex;
     width: 100%;
