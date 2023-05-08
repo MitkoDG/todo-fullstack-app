@@ -30,6 +30,22 @@ body {
     background-color: transparent;
 }
 
+.edit {
+  border: 1.5px solid rgb(141, 181, 145);
+  color: rgb(141, 181, 145);
+  text-transform: uppercase;
+}
+
+.edit:hover {
+  background-color: rgb(182, 223, 186);
+}
+
+.edit:active {
+  border: 1.5px solid rgb(141, 181, 145);
+  color: rgb(255, 255, 255);
+  background-color: rgb(141, 181, 145);
+}
+
 .list-header {
     display: flex;
     width: 100%;
