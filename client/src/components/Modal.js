@@ -1,6 +1,6 @@
 const Modal = () => {
 
-    const mode = '.edit';
+    const mode = 'edit';
 
     const handleChange = () => {
         console.log('Chanching mode');
@@ -22,9 +22,11 @@ const Modal = () => {
                         value={""}
                         onChange={handleChange}
                     />
+                    <label for="range">Drag to select your current progress</label>
                     <input
                         required
                         type="range"
+                        id="range"
                         min={0}
                         max={100}
                         name="progress"
