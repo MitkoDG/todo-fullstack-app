@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const pool = require('./db');
 app.use(cors());
+app.use(express.json());
 
 app.get('/todos/:userEmail', async (req, res) => {
     const { userEmail } = req.params;
