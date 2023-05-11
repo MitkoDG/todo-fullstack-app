@@ -1,14 +1,13 @@
 import { useState } from 'react';
 
-const Modal = () => {
-    const mode = 'create';
-
+const Modal = ({mode, setShowModal, task}) => {
+    
     const editMode = mode === 'edit' ? true : false;
 
     const [data, editData] = useState({
-        user_email: "",
-        title: "",
-        progress: "",
+        user_email: editMode ? task.user_email : null,
+        title: editMode ? task.title : null,
+        progress: editMode ? task.progress : 50,
         date: editMode ? "" : new Date(),
     })
 
@@ -25,7 +24,7 @@ const Modal = () => {
             <div className="modal">
                 <div className="form-title-container">
                     <h3>Let`s {mode} your task</h3>
-                    <button>X</button>
+                    <button onClick={() => setShowModal(false)}>X</button>
                 </div>
 
                 <form>
