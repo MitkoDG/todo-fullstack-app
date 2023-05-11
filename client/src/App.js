@@ -1,13 +1,13 @@
 import ListHeaders from './components/ListHeaders';
-import { useEffect, useState } from 'react'
 import ListItems from './components/ListItems';
+import { useEffect, useState } from 'react'
 
 const App = () => {
   const userEmail = 'dimitargegov@gmail.com';
   const [tasks, setTasks] = useState(null);
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/todos/${userEmail}`);
+      const response = await fetch(`http://127.0.0.1:8000/todos/${userEmail}`);
       const data = await response.json();
       console.log(data);
       setTasks(data);

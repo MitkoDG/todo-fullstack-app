@@ -9,7 +9,9 @@ const Modal = ({mode, setShowModal, task}) => {
         title: editMode ? task.title : null,
         progress: editMode ? task.progress : 50,
         date: editMode ? "" : new Date(),
-    })
+    });
+
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 const ListHeaders = ({ listName }) => {
-    const [showModal, setShowModal] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     const signOut = () => {
         console.log('Signing out');

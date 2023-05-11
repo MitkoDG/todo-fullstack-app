@@ -5,6 +5,7 @@ import TickIcon from "./TickIcon";
 
 const ListItems = ({ task }) => {
     const [showModal, setShowModal] = useState(false);
+    
     return (
         <li className="list-item">
 
