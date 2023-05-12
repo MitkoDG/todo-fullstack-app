@@ -4,7 +4,7 @@ const Modal = ({ mode, setShowModal, task }) => {
 
     const editMode = mode === 'edit' ? true : false;
 
-    const [data, editData] = useState({
+    const [data, setData] = useState({
         user_email: editMode ? task.user_email : 'bob@test.com',
         title: editMode ? task.title : null,
         progress: editMode ? task.progress : 50,
@@ -27,10 +27,20 @@ const Modal = ({ mode, setShowModal, task }) => {
         }
     }
 
+    const editData = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/todos/${task.id}`)
+            console.log(response);
+        } catch (err) {
+            console.error(err)
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        editData({
+        setData({
             ...data,
             [name]: value,
         })
@@ -63,7 +73,7 @@ const Modal = ({ mode, setShowModal, task }) => {
                         value={data.progress}
                         onChange={handleChange}
                     />
-                    <input className={mode} type="submit" onClick={editMode ? '': postData}/>
+                    <input className={mode} type="submit" onClick={editMode ? editData : postData} />
                 </form>
             </div>
 
