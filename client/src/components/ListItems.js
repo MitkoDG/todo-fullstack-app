@@ -3,7 +3,7 @@ import Modal from "./Modal";
 import ProgressBar from "./ProgressBar";
 import TickIcon from "./TickIcon";
 
-const ListItems = ({ task }) => {
+const ListItems = ({ task, getData }) => {
     const [showModal, setShowModal] = useState(false);
     
     return (
@@ -19,7 +19,7 @@ const ListItems = ({ task }) => {
                 <button className="edit" onClick={() => setShowModal(true)}>Edit</button>
                 <button className="delete">Delete</button>
             </div>
-            {showModal && <Modal mode={'edit'} setShowModal={setShowModal} task={task} />}
+            {showModal && <Modal mode={'edit'} setShowModal={setShowModal} task={task} getData={getData} />}
 
         </li>
 

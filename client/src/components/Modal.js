@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-const Modal = ({ mode, setShowModal, task }) => {
+const Modal = ({ mode, setShowModal, getData, task }) => {
 
     const editMode = mode === 'edit' ? true : false;
 
     const [data, setData] = useState({
-        user_email: editMode ? task.user_email : 'bob@test.com',
+        user_email: editMode ? task.user_email : 'ddg@test.com',
         title: editMode ? task.title : null,
         progress: editMode ? task.progress : 50,
-        date: editMode ? "" : new Date(),
+        date: editMode ? task.date : new Date(),
     });
 
     const postData = async (e) => {
@@ -30,8 +30,15 @@ const Modal = ({ mode, setShowModal, task }) => {
     const editData = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://127.0.0.1:8000/todos/${task.id}`)
-            console.log(response);
+            const response = await fetch(`http://127.0.0.1:8000/todos/${task.id}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            if (response.status === 200) {
+                setShowModal(false);
+                getData();
+            }
         } catch (err) {
             console.error(err)
         }
