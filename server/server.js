@@ -32,13 +32,24 @@ app.post('/todos', (req, res) => {
 });
 
 app.put('/todos/:id', async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     const { user_email, title, progress, date } = req.body;
-    const editToDo = await pool.query('UPDATE todos SET user_email = $1, title = $2, progress = $3, date = $4 WHERE id = $5', [user_email, title, progress, date, id]);
     try {
+        const editToDo = await pool.query('UPDATE todos SET user_email = $1, title = $2, progress = $3, date = $4 WHERE id = $5',
+            [user_email, title, progress, date, id]);
         res.json(editToDo);
     } catch (err) {
         console.error(err);
+    }
+});
+
+app.delete('/todos/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deleteToDo = await pool.query('DELETE from todos WHERE id = $1', [id]);
+        res.json(deleteToDo);
+    } catch (err) {
+        logger.error(err);
     }
 });
 
