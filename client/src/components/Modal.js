@@ -14,14 +14,17 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
     const postData = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://127.0.0.1:8000/todos', {
+            const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos`, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
-            })
-            console.log(response);
+                })
+            if (response.status === 200) {
+                console.log('WORKED');
+                setShowModal(false);
+                getData();
+            }
+            
         } catch (err) {
             console.error(err)
         }
@@ -30,7 +33,7 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
     const editData = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://127.0.0.1:8000/todos/${task.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`, {
                 method: "PUT",
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify(data)

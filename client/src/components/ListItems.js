@@ -8,7 +8,7 @@ const ListItems = ({ task, getData }) => {
 
     const deleteItem = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/todos/${task.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`, {
                 method: "DELETE",
                 // headers: {
                 //     "Content-Type": "application/json",
