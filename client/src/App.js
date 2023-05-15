@@ -13,7 +13,7 @@ const App = () => {
       console.log(data);
       setTasks(data);
     } catch (err) {
-      console.error(err);
+      console.error(err + 'App.js');
     }
   }
 

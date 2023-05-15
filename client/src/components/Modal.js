@@ -26,7 +26,7 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
             }
             
         } catch (err) {
-            console.error(err)
+            console.error(err + 'POST Modal.js');
         }
     }
 
@@ -43,7 +43,7 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
                 getData();
             }
         } catch (err) {
-            console.error(err)
+            console.error(err + 'EDIT Modal.js');
         }
     };
 

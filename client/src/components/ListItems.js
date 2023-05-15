@@ -18,7 +18,7 @@ const ListItems = ({ task, getData }) => {
                 getData();
             }
         } catch (err) {
-            console.log(err);
+            console.log(err + 'ListItems.js');
         }
     }
     return (

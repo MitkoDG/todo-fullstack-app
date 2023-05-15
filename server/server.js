@@ -15,7 +15,7 @@ app.get('/todos/:userEmail', async (req, res) => {
         const todos = await pool.query('SELECT * FROM todos WHERE user_email = $1', [userEmail]);
         res.json(todos.rows);
     } catch (err) {
-        console.log(err);
+        console.log(err + 'GET server.js');
     }
 });
 
@@ -27,7 +27,7 @@ app.post('/todos', (req, res) => {
         pool.query(`INSERT INTO todos (id, user_email, title, progress, date) VALUES($1, $2, $3, $4, $5)`,
             [id, user_email, title, progress, date])
     } catch (err) {
-        log.error(err);
+        log.error(err + 'POST server.js');
     }
 });
 
@@ -39,7 +39,7 @@ app.put('/todos/:id', async (req, res) => {
             [user_email, title, progress, date, id]);
         res.json(editToDo);
     } catch (err) {
-        console.error(err);
+        console.error(err + 'PUT server.js');
     }
 });
 
@@ -49,7 +49,7 @@ app.delete('/todos/:id', async (req, res) => {
         const deleteToDo = await pool.query('DELETE from todos WHERE id = $1', [id]);
         res.json(deleteToDo);
     } catch (err) {
-        logger.error(err);
+        logger.error(err + 'DELETE server.js');
     }
 });
 
