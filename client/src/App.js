@@ -3,7 +3,7 @@ import ListItems from './components/ListItems';
 import { useEffect, useState } from 'react'
 
 const App = () => {
-  const userEmail = 'dimitargegov@gmail.com';
+  const userEmail = 'ddg@test.com';
   const [tasks, setTasks] = useState(null);
 
   const getData = async () => {
@@ -27,8 +27,8 @@ const App = () => {
 
   return (
     <div className="app">
-      <ListHeaders listName={'Priority List'} />
-      {sortedTasks?.map((task) => <ListItems key={task.id} task={task} />)}
+      <ListHeaders listName={'Priority List'} getData={getData} />
+      {sortedTasks?.map((task) => <ListItems key={task.id} task={task} getData={getData}/>)}
     </div>
   );
 }
