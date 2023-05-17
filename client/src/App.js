@@ -1,3 +1,4 @@
+import Auth from './components/Auth';
 import ListHeaders from './components/ListHeaders';
 import ListItems from './components/ListItems';
 import { useEffect, useState } from 'react'
@@ -5,6 +6,8 @@ import { useEffect, useState } from 'react'
 const App = () => {
   const userEmail = 'ddg@test.com';
   const [tasks, setTasks] = useState(null);
+
+  const authToken = false;
 
   const getData = async () => {
     try {
@@ -27,8 +30,12 @@ const App = () => {
 
   return (
     <div className="app">
-      <ListHeaders listName={'Priority List'} getData={getData} />
-      {sortedTasks?.map((task) => <ListItems key={task.id} task={task} getData={getData}/>)}
+      {!authToken && <Auth />}
+      {authToken &&
+        <>
+          <ListHeaders listName={'Priority List'} getData={getData} />
+          {sortedTasks?.map((task) => <ListItems key={task.id} task={task} getData={getData} />)}
+        </>}
     </div>
   );
 }
