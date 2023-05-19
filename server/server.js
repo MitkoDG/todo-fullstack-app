@@ -2,9 +2,11 @@ const PORT = process.env.PORT || 8000
 const express = require('express');
 const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
-
 const app = express();
 const pool = require('./db');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 app.use(cors());
 app.use(express.json());
 
@@ -53,6 +55,23 @@ app.delete('/todos/:id', async (req, res) => {
     }
 });
 
+app.post('/signup', async (req, res) => {
+    const { email, password } = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
 
+    try {
+        const signUp = await pool.query(`INSERT INTO users (email, hashed_password) VALUES($1, $2)`,
+        [email, hashedPassword]);
+
+        const token = jwt.sign({ email }, 'secret', {expiresIn: '1hr'});
+
+        res.json({email, token});
+    } catch (err) {
+        console.log(err.detail);
+        console.error(err + 'error hashing password');
+
+    }
+});
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`));

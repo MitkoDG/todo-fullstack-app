@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+
 
 const Modal = ({ mode, setShowModal, getData, task }) => {
-
+    const [cookies, setCookie, removeCookie] = useCookies(null);
     const editMode = mode === 'edit' ? true : false;
 
     const [data, setData] = useState({
-        user_email: editMode ? task.user_email : 'ddg@test.com',
+        user_email: editMode ? task.user_email : cookies.Email,
         title: editMode ? task.title : null,
         progress: editMode ? task.progress : 50,
         date: editMode ? task.date : new Date(),
@@ -16,15 +18,15 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
         try {
             const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos`, {
                 method: "POST",
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
-                })
+            })
             if (response.status === 200) {
                 console.log('WORKED');
                 setShowModal(false);
                 getData();
             }
-            
+
         } catch (err) {
             console.error(err + 'POST Modal.js');
         }
@@ -35,7 +37,7 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
         try {
             const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`, {
                 method: "PUT",
-                headers: { 'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             })
             if (response.status === 200) {
